@@ -1,0 +1,5 @@
+build	run-build	Build image	2026-08-24T12:00:01.0000000Z Step 14/22 : RUN make build
+build	run-build	Build image	2026-08-24T12:00:01.0010000Z  ---> Running in 8f2a91c3d4e5
+build	run-build	Build image	2026-08-24T12:00:01.0020000Z Killed
+build	run-build	Build image	2026-08-24T12:00:01.0030000Z ##[error]The runner has received a shutdown signal. This can happen when the runner service is stopped, or a manually started runner is canceled.
+build	run-build	Build image	2026-08-24T12:00:01.0040000Z ##[error]Process completed with exit code 137.

@@ -1,0 +1,9 @@
+all:
+  children:
+    demo:
+      hosts:
+        aiops-demo-instance:
+          ansible_connection: community.docker.docker
+        another-host:
+          ansible_connection: community.docker.docker
+          some_var: 1

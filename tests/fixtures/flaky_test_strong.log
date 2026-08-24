@@ -1,0 +1,7 @@
+demo-pipeline	run-demo	Run demo pipeline	2026-08-24T10:10:01.0000000Z Traceback (most recent call last):
+demo-pipeline	run-demo	Run demo pipeline	2026-08-24T10:10:01.0010000Z   File "demo_app/main.py", line 88, in <module>
+demo-pipeline	run-demo	Run demo pipeline	2026-08-24T10:10:01.0020000Z     sys.exit(main())
+demo-pipeline	run-demo	Run demo pipeline	2026-08-24T10:10:01.0030000Z   File "demo_app/main.py", line 21, in run_flaky_test
+demo-pipeline	run-demo	Run demo pipeline	2026-08-24T10:10:01.0040000Z     assert observed <= 20, (
+demo-pipeline	run-demo	Run demo pipeline	2026-08-24T10:10:01.0050000Z AssertionError: test_response_within_sla failed: expected <= 20ms, observed 87ms (intermittent -- passes most runs, this one caught the tail)
+demo-pipeline	run-demo	Run demo pipeline	2026-08-24T10:10:01.0060000Z ##[error]Process completed with exit code 1.

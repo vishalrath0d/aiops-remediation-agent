@@ -1,0 +1,7 @@
+[tool.pytest.ini_options]
+# Learned the hard way in self-healing-cicd: bare `pytest` (as opposed to
+# `python -m pytest`, which implicitly adds cwd to sys.path) can't find
+# the `agent` package without this -- caught there only after CI failed
+# for real on the first push. Applying the fix proactively here.
+pythonpath = ["."]
+testpaths = ["tests"]

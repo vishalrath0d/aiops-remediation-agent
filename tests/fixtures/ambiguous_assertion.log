@@ -1,0 +1,5 @@
+app-tests	run-tests	Run unit tests	2026-08-24T11:00:01.0000000Z Traceback (most recent call last):
+app-tests	run-tests	Run unit tests	2026-08-24T11:00:01.0010000Z   File "tests/test_billing.py", line 42, in test_invoice_total
+app-tests	run-tests	Run unit tests	2026-08-24T11:00:01.0020000Z     assert invoice.total == expected_total
+app-tests	run-tests	Run unit tests	2026-08-24T11:00:01.0030000Z AssertionError: expected 1042.50, got 1039.75
+app-tests	run-tests	Run unit tests	2026-08-24T11:00:01.0040000Z ##[error]Process completed with exit code 1.

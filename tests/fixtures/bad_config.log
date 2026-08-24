@@ -1,0 +1,7 @@
+demo-pipeline	run-demo	Run demo pipeline	2026-08-24T10:05:01.0000000Z Traceback (most recent call last):
+demo-pipeline	run-demo	Run demo pipeline	2026-08-24T10:05:01.0010000Z   File "demo_app/main.py", line 88, in <module>
+demo-pipeline	run-demo	Run demo pipeline	2026-08-24T10:05:01.0020000Z     sys.exit(main())
+demo-pipeline	run-demo	Run demo pipeline	2026-08-24T10:05:01.0030000Z   File "demo_app/main.py", line 47, in run_bad_config
+demo-pipeline	run-demo	Run demo pipeline	2026-08-24T10:05:01.0040000Z     raise RuntimeError(
+demo-pipeline	run-demo	Run demo pipeline	2026-08-24T10:05:01.0050000Z RuntimeError: REQUIRED_API_TOKEN is not set (or blank) for this environment -- cannot authenticate to the downstream service. Check the environment's secrets configuration.
+demo-pipeline	run-demo	Run demo pipeline	2026-08-24T10:05:01.0060000Z ##[error]Process completed with exit code 1.

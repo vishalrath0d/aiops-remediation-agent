@@ -1,0 +1,18 @@
+# Per-machine agent state + cloned consumer repos.
+/state/
+
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+!demo_infra/terraform/.terraform.lock.hcl
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+.venv/
+
+.env
+.DS_Store

@@ -1,0 +1,10 @@
+all:
+  hosts:
+    aiops-demo-instance:
+      # community.docker's docker connection plugin execs into the
+      # container directly -- no SSH server, no keys, no networking setup
+      # needed. Real config management against a real running container,
+      # the same shape as SSH-based Ansible against a real EC2 instance,
+      # minus the transport-layer setup that has nothing to do with what
+      # this project is actually demonstrating.
+      ansible_connection: community.docker.docker

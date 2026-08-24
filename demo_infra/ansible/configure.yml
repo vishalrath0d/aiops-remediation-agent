@@ -1,0 +1,36 @@
+---
+# The config-management half of the demo target. Real, idempotent Ansible
+# against a real running container -- the same two things a config-drift
+# incident on a real EC2 instance would actually involve: a user account
+# and an application config file, both things Terraform (provisioning)
+# has no business managing directly.
+- name: Configure the demo instance
+  hosts: aiops-demo-instance
+  gather_facts: false # the alpine base image doesn't ship python's facts deps by default
+
+  tasks:
+    - name: Ensure python3 is present (alpine's base image doesn't ship it)
+      raw: apk add --no-cache python3 >/dev/null 2>&1 || true
+      changed_when: false
+
+    - name: Ensure the appuser account exists
+      ansible.builtin.user:
+        name: appuser
+        shell: /bin/sh
+        create_home: true
+        state: present
+
+    - name: Ensure the app config directory exists
+      ansible.builtin.file:
+        path: /etc/aiops-demo
+        state: directory
+        mode: "0755"
+
+    - name: Ensure the app config file has the expected content
+      ansible.builtin.copy:
+        dest: /etc/aiops-demo/app.conf
+        content: |
+          # managed by aiops-remediation-agent -- demo_infra/ansible/configure.yml
+          service_enabled=true
+          log_level=info
+        mode: "0644"
