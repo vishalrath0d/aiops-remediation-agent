@@ -107,7 +107,13 @@ def _open_dependency_pr(
     with open(req_path, "a", encoding="utf-8") as f:
         f.write(f"\n{module_name}  # added by aiops-remediation-agent, run {run_id}\n")
 
-    subprocess.run(["git", "-C", clone_path, "add", req_path], check=True, capture_output=True)
+    # `git -C clone_path add <path>` resolves <path> relative to clone_path,
+    # not the process's own cwd -- req_path is already clone_path-prefixed
+    # (from _find_requirements_file), so it must be relativized here or git
+    # looks for it doubly-nested and fails. Found live: the first real
+    # cross-repo run hit exactly this (exit 128, "did not match any files").
+    req_path_relative = os.path.relpath(req_path, clone_path)
+    subprocess.run(["git", "-C", clone_path, "add", req_path_relative], check=True, capture_output=True)
     subprocess.run(
         [
             "git", "-C", clone_path, "commit", "-m",

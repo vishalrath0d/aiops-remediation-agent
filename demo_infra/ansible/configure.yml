@@ -12,6 +12,12 @@
     - name: Ensure python3 is present (alpine's base image doesn't ship it)
       raw: apk add --no-cache python3 >/dev/null 2>&1 || true
       changed_when: false
+      check_mode: false # raw is skipped by default under --check; this bootstrap
+      # step has to actually run even in preview mode, or every task after it
+      # fails for lack of a Python interpreter -- found live: a real --check
+      # run on a freshly Terraform-recreated container failed here, and the
+      # failure was (separately) misreported as "no drift" -- see
+      # agent/observer/infra_drift.py's check_ansible_drift for that fix.
 
     - name: Ensure the appuser account exists
       ansible.builtin.user:

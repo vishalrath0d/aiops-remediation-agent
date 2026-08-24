@@ -67,11 +67,17 @@ def check_ansible_drift(inventory: str, playbook: str) -> DriftFinding | None:
         capture_output=True,
         text=True,
     )
-    if result.returncode != 0 and "changed=" not in result.stdout:
+    if result.returncode != 0:
         # A real connection/execution failure (e.g. the target doesn't
-        # exist), not config drift -- caller should have already routed
-        # to Terraform first in that case, but don't silently swallow it
-        # if this got called out of order.
+        # exist, or -- found live -- a task genuinely failed mid-run),
+        # not config drift. Checking returncode alone, not "does
+        # 'changed=' appear in the output": the PLAY RECAP line always
+        # contains a changed= count, including changed=0 on a run that
+        # FAILED for an unrelated reason -- a real bug caught live here,
+        # where a failed run was misread as "no drift" because
+        # "changed=0" is a substring of a recap line reporting failed=1
+        # too. returncode is unambiguous; substring-matching the human
+        # summary line was not.
         raise RuntimeError(f"ansible-playbook --check failed to run:\n{result.stdout}\n{result.stderr}")
 
     changed = _parse_changed_count(result.stdout)

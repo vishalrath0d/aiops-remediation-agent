@@ -41,7 +41,13 @@ def post_phase_update(tracker_repo: str, issue_url: str, incident: Incident, not
         ["gh", "issue", "comment", issue_number, "--repo", tracker_repo, "--body", body],
         check=True, capture_output=True,
     )
-    if incident.phase in (Phase.RESOLVED, Phase.ESCALATED):
+    if incident.phase == Phase.RESOLVED:
+        # ESCALATED deliberately does NOT close the issue -- escalating
+        # means "a human needs to look at this" (a preview awaiting an
+        # apply decision, or a fix that didn't work). Closing it right
+        # then would defeat the entire point of escalating. Found live:
+        # the first real run closed issue #1 on a preview-only outcome,
+        # which is exactly backwards.
         subprocess.run(
             ["gh", "issue", "close", issue_number, "--repo", tracker_repo],
             check=True, capture_output=True,
