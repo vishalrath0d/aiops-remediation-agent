@@ -1,8 +1,8 @@
 """Repo import: real, live, via the GitHub API -- catalog every repo an
 owner (user or org) has, as the starting inventory of what this agent
-could potentially watch. Doesn't itself add anything to a watch list;
-see docs/next/next.md for that as a follow-up (this project scopes
-"discover what exists," not "auto-enroll everything discovered")."""
+could potentially watch. Doesn't itself add anything to a watch list --
+that's a real follow-up (this project scopes "discover what exists," not
+"auto-enroll everything discovered")."""
 from __future__ import annotations
 
 import json

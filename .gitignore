@@ -1,3 +1,11 @@
+# Internal-only material: the product/business vision (PRD, architecture
+# vision, scenario catalog), the portfolio-wide roadmap, and this repo's
+# own next-steps notes. Real content, deliberately not public yet -- kept
+# locally, excluded from what gets published/pushed. Its own git history
+# was purged, not just newly-ignored -- see internal/README-with-product-vision-pointer.md
+# for what the public README looked like before this was pulled back out.
+/internal/
+
 # Per-machine agent state + cloned consumer repos.
 /state/
 
