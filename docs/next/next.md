@@ -1,0 +1,6 @@
+- ~~write the full README~~ **Done.**
+- ~~real live verification pass~~ **Done** — 4 real bugs found and fixed, see README's Verified section.
+- consider: auto-enroll from `import repos` into a watch list (currently discovery-only)
+- consider: a real Slack/Jira/PagerDuty workspace to actually live-verify those three comms backends
+- consider: a small "responsible_tool" fast-path for code triage that recognizes a repo's OWN package name so the 'agent'-misclassification edge case documented in the README can't happen again for a similar case
+- any other improvements
